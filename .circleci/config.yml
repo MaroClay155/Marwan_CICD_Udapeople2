@@ -175,7 +175,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - Marwan_CICD_Udapeople1/.circleci/ansible/inventory.txt
+            - ~/.circleci/ansible/inventory.txt
       - destroy_environment 
         
   
