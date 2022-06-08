@@ -171,7 +171,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/.circleci/ansible/inventory.txt
+            - Marwan_CICD_Udapeople1/.circleci/ansible/inventory.txt
       - destroy_environment 
         
   
@@ -194,7 +194,6 @@ workflows:
           filters:
             branches:
               only: [master]
-              #test-feature-branch
       #- configure-infrastructure:
       #    requires: [deploy-infrastructure]
       #- run-migrations:
