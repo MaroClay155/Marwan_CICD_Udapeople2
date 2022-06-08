@@ -15,7 +15,6 @@ jobs:
             cd frontend
             npm install
             npm run build
-      #     no_output_timeout: 30m
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-build
@@ -33,7 +32,6 @@ jobs:
              cd backend
              npm install
              npm run build
-      #      no_output_timeout: 30m
       - save_cache:
           paths: [backend/node_modules]
           key: backend-build
@@ -51,7 +49,6 @@ jobs:
             cd frontend
             npm install
             npm run test
-      #     no_output_timeout: 30m
       - save_cache:
           paths: [frontend/node_modules]
           key: frontend-test
@@ -70,7 +67,6 @@ jobs:
             cd backend
             npm install
             npm run test
-      #     no_output_timeout: 30m
       - save_cache:
           paths: [backend/node_modules]
           key: backend-test
@@ -88,7 +84,6 @@ jobs:
             cd frontend
             npm install
             npm audit fix --audit-level=critical --force 
-      #     no_output_timeout: 30m
       #     npm audit --audit-level=critical   
       - save_cache:
           paths: [frontend/node_modules]
@@ -107,8 +102,7 @@ jobs:
              cd backend
              npm install
              npm audit fix --audit-level=critical --force
-      #      npm audit --audit-level=critical
-      #      no_output_timeout: 30m     
+      #      npm audit --audit-level=critical   
       - save_cache:
           paths: [backend/node_modules]
           key: backend-scan        
