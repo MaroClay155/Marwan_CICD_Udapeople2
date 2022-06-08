@@ -159,23 +159,21 @@ jobs:
               --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}"  \
               --tags project=udapeople
       - run:
+          name: Install tar utility
+          command: |
+            yum install -y tar gzip
+      - run:
           name: Add back-end ip to ansible inventory
           command: |
-            touch inventory
-            echo [web] > inventory
             aws ec2 describe-instances \
             \
                 --query 'Reservations[*].Instances[*].PublicIpAddress' \
               --filters "Name=tag:Project,Values=backend" \
               --output text >> inventory
-      - run:
-          name: Install tar utility
-          command: |
-            yum install -y tar gzip
       - persist_to_workspace:
-          root: ~/
+          root: ~/.circleci/ansible/
           paths:
-            - .circleci/ansible/inventory.txt
+            - inventory.txt
       - destroy_environment 
         
   
