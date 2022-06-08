@@ -171,9 +171,9 @@ jobs:
               --filters "Name=tag:Project,Values=backend" \
               --output text >> inventory
       - persist_to_workspace:
-          root: ~/.circleci/ansible/
+          root: ~/
           paths:
-            - inventory.txt
+            - .circleci/ansible/inventory.txt
       - destroy_environment 
         
   
