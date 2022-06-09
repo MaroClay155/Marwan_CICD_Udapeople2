@@ -228,13 +228,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install npm
-          command: |
-            npm install
-      - run:
           name: Install node
           command: |
             node/install-packages
+          # npm install
       - run:
           name: Install awscli
           command: | 
@@ -281,6 +278,7 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
+            npm install
             npm i
             npm run build
             cd ..
@@ -289,10 +287,7 @@ jobs:
             echo "Contents  of the inventory.txt file is -------"
             cat inventory.txt
             ansible-playbook -i inventory.txt deploy-backend.yml
-      - run:
-          image: amazon/aws-cli
-          command: |
-            destroy_environment 
+      - destroy_environment 
       - revert-migrations
 
   smoke-test:
