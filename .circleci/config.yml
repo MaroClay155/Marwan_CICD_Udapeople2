@@ -228,10 +228,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install ansible
-          command: |
-            apk add --update ansible
-      - run:
           name: Install npm
           command: |
             'sudo npm install -g npm@latest'
@@ -280,10 +276,6 @@ jobs:
           name: Install ansible
           command: |
             apk add --update ansible
-      - run:
-          name: Install npm
-          command: |
-            'sudo npm install -g npm@latest'
       - run:
           name: Install node
           command: |
