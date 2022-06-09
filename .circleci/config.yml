@@ -206,8 +206,14 @@ jobs:
           command: |
             cd backend
             npm install
+            npm run build
+            ts-node -r dotenv/config node_modules/.bin/typeorm migration:create
+            npm run build
+            ts-node -r dotenv/config node_modules/.bin/typeorm migration:generate
+            npm run build
+            ts-node -r dotenv/config node_modules/.bin/typeorm migration:run
+            ts-node node_modules/typeorm/cli.js migration:run
             npm run migrations > migrations_dump.txt
-            npm audit fix --force
       #- run:
       #    name: Send migration results to memstash
       #    command: |
