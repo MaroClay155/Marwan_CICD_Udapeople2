@@ -227,11 +227,11 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
-      - run:
-          name: Install node
-          command: |
-            node/install-packages
-          # npm install
+      #- run:
+      #    name: Install node
+      #    command: |
+      #      node/install-packages
+      #      npm install
       - run:
           name: Install awscli
           command: | 
@@ -278,7 +278,6 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
-            npm install
             npm i
             npm run build
             cd ..
