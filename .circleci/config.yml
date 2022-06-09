@@ -267,15 +267,21 @@ jobs:
       - attach_workspace:
           at: project/.circleci/ansible/inventory.txt
       - run:
-          name: Install dependencies
+          name: Install 1
           command: |
             apk add --update ansible
+      - run:
+          name: Install 2
+          command: |
+            pip3 install ansible
+            pip3 install awscli
+      - run:
+          name: Install 3
+          command: |
             apt update -y
             apt install -y tar gzip
             curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
             apt install -y nodejs
-            pip3 install ansible
-            pip3 install awscli
       - run:
           name: Deploy backend
           command: |
