@@ -317,11 +317,11 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-            # your code here
+          # your code here
       - run:
           name: Update cloudfront distribution
           command: |
-            # your code here
+          # your code here
       - destroy_environment 
       - revert-migrations
 
@@ -333,7 +333,7 @@ cleanup:
       - run:
           name: Get old stack workflow id
           command: |
-            # your code here
+          # your code here
             export OldWorkflowID="the id here"
             export STACKS=[] #put the list of stacks here
       - run:
