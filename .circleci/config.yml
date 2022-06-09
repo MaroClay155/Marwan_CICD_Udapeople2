@@ -216,15 +216,6 @@ jobs:
       # npm run build
       # ts-node -r dotenv/config node_modules/.bin/typeorm migration:run
       # ts-node node_modules/typeorm/cli.js migration:run
-      - revert-migrations
-      
-  Send migration results to memstash:
-    docker:
-      - image: circleci/node:13.8.0
-    steps:
-      - checkout
-      - restore_cache:
-          keys: [backend-build]
       - run:
           name: Send migration results to memstash
           command: |
@@ -232,7 +223,7 @@ jobs:
             then
                 curl -H "Content-Type: text/plain" -H "token: 7933fe63-4687-4fa1-8426-aa25aa1730ec" --request PUT --data "1" https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7}
             fi
-      - revert-migrations           
+      - revert-migrations        
             
           
   
