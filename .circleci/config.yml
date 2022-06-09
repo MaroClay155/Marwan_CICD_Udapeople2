@@ -270,17 +270,12 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            yum update -y
-            yum install -y tar gzip
-            yum install -y python3
+            apt update -y
+            apt install -y tar gzip
             curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
-            yum install -y nodejs
+            apt install -y nodejs
             pip3 install ansible
             pip3 install awscli
-      - run:
-          name: Install awscli
-          command: | 
-            pip install awscli
       - run:
           name: Deploy backend
           command: |
