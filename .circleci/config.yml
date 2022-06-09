@@ -12,22 +12,23 @@ commands:
              aws cloudformation delete-stack --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
              
   revert-migrations:
-    description: Revert the last migration if successfully run in the current workflow.
-    parameters:
-      # Add parameter here     
+    description: Revert the last migration if successfully run in the current workflow.  
     steps:
       - run:
           name: Revert migrations
-          # Add when this will run
+          when: on_fail
           command: |
-            # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
+          # Curl command here to see if there was a successful migration associated with the workflow id, store result in SUCCESS variable
+            URL="https://api.memstash.io/values/migration_${CIRCLE_WORKFLOW_ID:0:7}"
+          # Test if website exists
+            if curl -s --head ${URL} 
             SUCCESS = 1
             if(( $SUCCESS==1 )); 
             then
-            #  cd ~/project/backend
-            #  npm install
-            #  Add revert code here. You can find this in the Getting Started section.
-              exit 1
+               cd ~/project/backend
+               npm install
+               npm run build
+               ts-node -r dotenv/config node_modules/.bin/typeorm migration:revert
             fi
             
 
