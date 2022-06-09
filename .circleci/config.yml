@@ -224,12 +224,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install dependencies
-          command: |
-            apk add --update ansible
-            yum install -y tar gzip
-            apk add --update curl
-      - run:
           name: Get backend url
           command: |
             export BACKEND_IP=$(aws ec2 describe-instances)
@@ -261,8 +255,6 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
-            yum install -y tar gzip
-            apk add --update curl
       - run:
           name: Deploy backend
           command: |
