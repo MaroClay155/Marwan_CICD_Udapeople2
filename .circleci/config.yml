@@ -232,11 +232,7 @@ jobs:
       #    command: |
       #      node/install-packages
       #      npm install
-      - run:
-          name: Install awscli
-          command: | 
-            pip install 'pyyaml<4,>=3.10' awscli --upgrade --user
-            
+      #      pip install 'pyyaml<4,>=3.10' awscli --upgrade --user
       - run:
           name: Get backend url
           command: |
