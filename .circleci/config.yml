@@ -1,5 +1,9 @@
 version: 2.1
 
+orbs:
+  aws-cli: circleci/aws-cli@2.0.3
+  node: circleci/node@5.0.2
+  
 commands:
   destroy_environment:
      steps:
@@ -224,6 +228,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Install dependencies
+          command: |
+            apk add --update ansible
+            npm install
+      - run:
           name: Get backend url
           command: |
             export BACKEND_IP=$(aws ec2 describe-instances)
@@ -255,6 +264,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update ansible
+            npm install
       - run:
           name: Deploy backend
           command: |
