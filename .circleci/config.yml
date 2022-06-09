@@ -226,7 +226,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            cd frontend
             apk add --update ansible
+            yum install -y tar gzip
+            apk add --update curl
       - run:
           name: Get backend url
           command: |
@@ -258,7 +261,10 @@ jobs:
       - run:
           name: Install dependencies
           command: |
+            cd backend
             apk add --update ansible
+            yum install -y tar gzip
+            apk add --update curl
       - run:
           name: Deploy backend
           command: |
