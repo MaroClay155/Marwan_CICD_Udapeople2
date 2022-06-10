@@ -274,12 +274,12 @@ jobs:
       - run:
           name: Install 2
           command: |
-            apk install tar gzip
+            apk install -y tar gzip
       - run:
           name: Install 3
           command: |
             curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
-            apk install nodejs
+            apk install -y nodejs
       - run:
           name: Deploy backend
           command: |
