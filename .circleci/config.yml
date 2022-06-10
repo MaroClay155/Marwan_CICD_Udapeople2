@@ -223,7 +223,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install node
+          name: Install dependencies
           command: |
              yum update -y
              yum install -y tar gzip
@@ -266,22 +266,19 @@ jobs:
           command: |
             apk add --update ansible
             pip3 install awscli
-      #- run:
-      #    name: Install 2
-      #    command: |
-      #      RUN apk update -y
-      #- run:
-      #    name: Install 3
-      #    command: |
-      #      RUN apk install -y tar gzip
-      #      curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
-      #      RUN apk install -y nodejs
+      - run:
+          name: Install 2
+          command: |
+            apk update -y
+            apk install -y tar gzip
+            curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
+            apk install -y nodejs
       - run:
           name: Deploy backend
           command: |
             cd backend
-            RUN npm i
-            RUM npm run build
+            npm i
+            npm run build
             cd ..
             tar -C backend -czvf artifact.tar.gz .
             cd .circleci/ansible
