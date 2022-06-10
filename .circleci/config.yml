@@ -276,10 +276,12 @@ jobs:
             apk add bash
             apk add nodejs
             apk add tar gzip
-      #- run:
-      #    name: Install 2
-      #    command: |
-      #      curl -sL https://rpm.nodesource.com/setup_14.x |  bash -
+      - run:
+          name: Install 2
+          command: |
+            apk add npm
+          #  sudo apt-get install npm
+          #  curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
       - run:
           name: Deploy backend
           command: |
