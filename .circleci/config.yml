@@ -270,16 +270,16 @@ jobs:
           command: |
             apk add --update ansible
             pip3 install awscli
+            apk update 
       - run:
           name: Install 2
           command: |
-            apk update 
+            apk install tar gzip
       - run:
           name: Install 3
           command: |
-            apk install -y tar gzip
             curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
-            apk install -y nodejs
+            apk install nodejs
       - run:
           name: Deploy backend
           command: |
