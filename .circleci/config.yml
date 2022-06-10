@@ -269,13 +269,13 @@ jobs:
       - run:
           name: Install 2
           command: |
-            apk update -y
+            RUN apk update -y
       - run:
           name: Install 3
           command: |
-            apk install -y tar gzip
+            RUN apk install -y tar gzip
             curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
-            apk install -y nodejs
+            RUN apk install -y nodejs
       - run:
           name: Deploy backend
           command: |
@@ -299,7 +299,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-          # your code here
+            apk add --update curl
       - run:
           name: Backend smoke test.
           command: |
@@ -334,7 +334,7 @@ jobs:
       - run:
           name: Install dependencies
           command: |
-          # your code here
+            yum install -y tar gzip
       - run:
           name: Update cloudfront distribution
           command: |
@@ -351,6 +351,10 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
+      - run:
+          name: Install dependencies
+          command: |
+            yum install -y tar gzip
       - run:
           name: Get old stack workflow id
           command: |
