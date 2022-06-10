@@ -274,6 +274,9 @@ jobs:
           name: Install 2
           command: |
             apk update 
+      - run:
+          name: Install 3
+          command: |
             apk install -y tar gzip
             curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
             apk install -y nodejs
