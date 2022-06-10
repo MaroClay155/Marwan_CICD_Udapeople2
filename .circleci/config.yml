@@ -280,9 +280,15 @@ jobs:
       - run:
           name: Install 3
           command: |
-            curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
             apk install -y nodejs
+      - run:
+          name: Install 4
+          command: |
             apk install -y tar gzip
+      - run:
+          name: Install 5
+          command: |
+            curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
       - run:
           name: Deploy backend
           command: |
