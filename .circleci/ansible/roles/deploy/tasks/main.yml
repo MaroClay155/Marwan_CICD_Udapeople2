@@ -18,7 +18,7 @@
     global: yes
     production: yes
     state: present
-    
+     
 #---
 #npm install
 #pm2 stop default
