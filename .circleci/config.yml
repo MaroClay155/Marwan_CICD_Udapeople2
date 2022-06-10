@@ -306,7 +306,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update curl
-            apk add awscli
+          # apk add awscli
       - run:
           name: Frontend smoke test.
           command: |
