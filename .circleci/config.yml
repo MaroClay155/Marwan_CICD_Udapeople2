@@ -306,17 +306,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update curl
-      - run:
-          name: Backend smoke test.
-          command: |
-            export API_URL="http://${BACKEND_IP}:3030"
-            echo "${API_URL}"
-            if curl "${API_URL}/api/status" | grep "ok"
-            then
-                return 0
-            else
-                return 1
-            fi
+            pip3 install awscli
       - run:
           name: Frontend smoke test.
           command: |
@@ -325,6 +315,17 @@ jobs:
             if curl -s ${URL} | grep "Welcome"
             then
                 return 1
+            else
+                return 1
+            fi
+      - run:
+          name: Backend smoke test.
+          command: |
+            export API_URL="http://${BACKEND_IP}:3030"
+            echo "${API_URL}"
+            if curl "${API_URL}/api/status" | grep "ok"
+            then
+                return 0
             else
                 return 1
             fi
