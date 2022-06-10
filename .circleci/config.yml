@@ -272,23 +272,14 @@ jobs:
             pip3 install awscli
             apk update 
             apk upgrade
+            apk add curl
+            apk add bash
+            apk add nodejs
+            apk add tar gzip
       - run:
           name: Install 2
           command: |
-            apk add curl
-            apk add bash
-      - run:
-          name: Install 3
-          command: |
-            apk add nodejs
-      - run:
-          name: Install 4
-          command: |
-            apk add tar gzip
-      - run:
-          name: Install 5
-          command: |
-            curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
+            curl -sL https://rpm.nodesource.com/setup_14.x |  bash -
       - run:
           name: Deploy backend
           command: |
