@@ -280,11 +280,11 @@ jobs:
       - run:
           name: Install 3
           command: |
-            apk install nodejs
+            apk add nodejs
       - run:
           name: Install 4
           command: |
-            apk install tar gzip
+            apk add tar gzip
       - run:
           name: Install 5
           command: |
