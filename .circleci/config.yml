@@ -274,12 +274,18 @@ jobs:
       - run:
           name: Install 2
           command: |
-            apk install -y tar gzip
+            curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
       - run:
           name: Install 3
           command: |
-            curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
             apk install -y nodejs
+            apk install -y tar gzip
+      - run:
+          name: on fail in Install 3
+          when: on_fail
+          command: |
+            apk fix  
+            apk upgrade
       - run:
           name: Deploy backend
           command: |
