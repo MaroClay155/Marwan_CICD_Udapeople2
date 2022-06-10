@@ -280,8 +280,8 @@ jobs:
           name: Deploy backend
           command: |
             cd backend
-            npm i
-            npm run build
+            RUN npm i
+            RUM npm run build
             cd ..
             tar -C backend -czvf artifact.tar.gz .
             cd .circleci/ansible
