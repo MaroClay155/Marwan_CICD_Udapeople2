@@ -281,7 +281,6 @@ jobs:
             apk add nodejs
             apk add tar gzip
             apk add npm
-            apk add aws
       - run:
           name: Install 2
           command: |
