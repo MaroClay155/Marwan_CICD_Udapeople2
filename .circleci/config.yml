@@ -199,6 +199,8 @@ jobs:
           command: |
             cd .circleci/ansible
             ansible-playbook -i inventory.txt main.yml
+            cat inventory.txt
+          #?????????????.....Empty inventory...???????????????
       - destroy_environment     
         
   run-migrations:
@@ -267,8 +269,6 @@ jobs:
       - checkout
       - add_ssh_keys:
             fingerprints: ["8e:f1:6e:28:55:12:9e:0d:7b:a6:19:93:8d:3a:42:7f"] 
-      - attach_workspace:
-          at: ./.circleci/ansible/inventory.txt
       - run:
           name: Install 1
           command: |
@@ -281,12 +281,8 @@ jobs:
             apk add nodejs
             apk add tar gzip
             apk add npm
-      - run:
-          name: Install 2
-          command: |
-            apk add aws
-          # pip3 install --upgrade pip 
-          # pip3 install awscli
+      - attach_workspace:
+          at: project/.circleci/ansible/inventory.txt
       - run:
           name: Deploy backend
           command: |
