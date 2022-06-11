@@ -280,12 +280,14 @@ jobs:
             apk add bash
             apk add nodejs
             apk add tar gzip
+            apk add npm
+            apk add aws
       - run:
           name: Install 2
           command: |
-            apk add npm
-          #  sudo apt-get install npm
-          #  curl -sL https://rpm.nodesource.com/setup_10.x |  bash -
+            apk add aws
+          # pip3 install --upgrade pip 
+          # pip3 install awscli
       - run:
           name: Deploy backend
           command: |
@@ -297,7 +299,7 @@ jobs:
             cd .circleci/ansible
             echo "Contents  of the inventory.txt file is -------"
             cat ./.circleci/ansible/inventory.txt
-            ansible-playbook -i ./.circleci/ansible/inventory.txt deploy-backend.yml
+            ansible-playbook -i inventory.txt deploy-backend.yml
       - destroy_environment 
       - revert-migrations
 
@@ -313,7 +315,6 @@ jobs:
             apk add python3 py3-pip
             pip3 install --upgrade pip 
             pip3 install awscli
-          # apk add awscli
       - run:
           name: Frontend smoke test.
           command: |
