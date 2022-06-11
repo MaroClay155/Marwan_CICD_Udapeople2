@@ -306,7 +306,9 @@ jobs:
           name: Install dependencies
           command: |
             apk add --update curl
-            apk add py3-urllib3@edge aws-cli@edge-comm
+            apk add python3 py3-pip
+            pip3 install --upgrade pip 
+            pip3 install awscli
           # apk add awscli
       - run:
           name: Frontend smoke test.
