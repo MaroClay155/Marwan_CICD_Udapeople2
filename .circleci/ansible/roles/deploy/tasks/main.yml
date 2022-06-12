@@ -21,7 +21,7 @@
     
 - name: "install curl"
   become: true
-  npm:
+  apk:
     name: curl
     global: yes
     production: yes
