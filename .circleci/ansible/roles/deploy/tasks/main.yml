@@ -18,7 +18,14 @@
     global: yes
     production: yes
     state: present
-     
+    
+- name: "install curl"
+  become: true
+  npm:
+    name: curl
+    global: yes
+    production: yes
+    state: present   
 #---
 #npm install
 #pm2 stop default
