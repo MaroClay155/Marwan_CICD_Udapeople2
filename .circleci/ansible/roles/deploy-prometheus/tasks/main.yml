@@ -1,0 +1,27 @@
+- name: "install node exporter."
+  unarchive:
+    src: https://github.com/prometheus/prometheus/releases/download/v2.19.0/prometheus-2.19.0.linux-amd64.tar.gz
+    dest: /tmp
+    remote_src: yes
+
+- name: "move binary to /usr/local/bin."
+  become: true
+  copy:
+    src: /tmp/prometheus-0.17.0.linux-amd64/prometheus
+    dest: /usr/local/bin/node_exporter
+    remote_src: yes
+    mode: '0777'
+    
+- name: "add prometheus configuration."
+  become: true
+  copy:
+    src: prometheus.service
+    dest: /etc/systemd/system/
+
+- name: "enable prometheus service"
+  become: true
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: prometheus
+    enabled: yes
