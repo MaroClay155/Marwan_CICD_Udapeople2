@@ -48,4 +48,4 @@ Resources:
         - Key: Name
           Value: backend
         - Key: monitor
-          Value: prometheus
+          Value: nodeexporter
