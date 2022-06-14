@@ -311,7 +311,7 @@ jobs:
             echo "Contents  of the prometheus-inventory file is -------"
             aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:Name,Values=prometheus" --output text >> prometheusinventory.txt
             cat prometheusinventory.txt
-            ansible-playbook -i prometheusinventory.txt prometheus.yml
+            ansible-playbook -i prometheusinventory.txt deploy-prometheus.yml
           
       - destroy_environment 
       - revert-migrations
