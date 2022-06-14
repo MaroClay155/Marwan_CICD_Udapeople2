@@ -172,9 +172,7 @@ jobs:
           command: |
             aws ec2 describe-instances \
             \
-                --query 'Reservations[*].Instances[*].PublicIpAddress' \
-              --filters "Name=tag:Name,Values=backend" \
-              --output text >> ./.circleci/ansible/inventory.txt
+                --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:Name,Values=backend" --output text >> ./.circleci/ansible/inventory.txt
               cat ./.circleci/ansible/inventory.txt
       - persist_to_workspace:
           root: ~/
@@ -200,7 +198,7 @@ jobs:
           name: Run Playbook and Configure server
           command: |
             cd .circleci/ansible
-            ansible-playbook -i inventory.txt main.yml
+            ansible-playbook -i aws ec2 describe-instances --query 'Reservations[*].Instances[*].PublicIpAddress' --filters "Name=tag:Name,Values=backend" --output text >> inventory.txt main.yml
             cat inventory.txt
           #?????????????.....Empty inventory...???????????????..........................................
       - destroy_environment     
