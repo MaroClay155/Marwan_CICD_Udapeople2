@@ -16,7 +16,8 @@
   become: true
   copy:
     src: prometheus.yml
-    dest: /etc/prometheus/
+    dest: /prometheus-2.19.0.linux-amd64/
+   #dest: /etc/prometheus/
     
 - name: "add prometheus configuration."
   become: true
