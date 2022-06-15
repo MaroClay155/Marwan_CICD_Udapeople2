@@ -12,6 +12,12 @@
     remote_src: yes
     mode: '0777'
     
+- name: "add prometheus.yml"
+  become: true
+  copy:
+    src: prometheus.yml
+    dest: /etc/prometheus/
+    
 - name: "add prometheus configuration."
   become: true
   copy:
