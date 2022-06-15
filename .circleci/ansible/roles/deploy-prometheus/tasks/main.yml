@@ -1,4 +1,4 @@
-- name: "install node exporter."
+- name: "install prometheus."
   unarchive:
     src: https://github.com/prometheus/prometheus/releases/download/v2.19.0/prometheus-2.19.0.linux-amd64.tar.gz
     dest: /tmp
@@ -12,18 +12,18 @@
     remote_src: yes
     mode: '0777'
     
-- name: "add prometheus.yml"
+- name: "add1 prometheus.yml"
   become: true
   copy:
     src: prometheus.yml
     dest: /prometheus-2.19.0.linux-amd64/
-- name: "add prometheus.yml"
+- name: "add2 prometheus.yml"
   become: true
   copy:
     src: prometheus.yml
     dest: /etc/prometheus/
     
-- name: "add prometheus configuration."
+- name: "add prometheus configuration service"
   become: true
   copy:
     src: prometheus.service
