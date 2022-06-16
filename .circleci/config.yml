@@ -146,6 +146,7 @@ jobs:
       - checkout
       - run:
           name: Ensure back-end infrastructure exists
+          no_output_timeout: 30m
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
@@ -154,6 +155,7 @@ jobs:
               --tags project=udapeople
       - run:
           name: Ensure prometheus infrastructure exists
+          no_output_timeout: 30m
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/prometheus.yml \
@@ -162,6 +164,7 @@ jobs:
               --tags project=prometheus
       - run:
           name: Ensure front-end infrastructure exist
+          no_output_timeout: 30m
           command: |
             aws cloudformation deploy \
               --template-file .circleci/files/frontend.yml \
@@ -262,6 +265,7 @@ jobs:
             cat frontend/.env
       - run:
           name: Deploy frontend objects
+          no_output_timeout: 30m
           command: |
             cd frontend
             npm install
@@ -294,6 +298,7 @@ jobs:
           at: project/.circleci/ansible/inventory.txt
       - run:
           name: Deploy backend
+          no_output_timeout: 30m
           command: |
             cd backend
             npm i
@@ -307,6 +312,7 @@ jobs:
             ansible-playbook -i inventory.txt deploy-backend.yml
       - run:
           name: Deploy prometheus
+          no_output_timeout: 30m
           command: |
             cd .circleci/ansible
             echo "Contents  of the prometheus-inventory file is -------"
