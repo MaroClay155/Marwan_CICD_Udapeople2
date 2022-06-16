@@ -1,0 +1,27 @@
+groups:
+  - name: udapeople_ec2
+    rules:
+    - alert: InstanceTooMuchMemory
+      expr: node_memory_MemFree < 1000000
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: “Instance {{ $labels.host }}: is almost out of memory”
+        description: “{{ $labels.host }} has less than 100KB memory available”
+    - alert: InstanceDown
+      expr: up == 0
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: “Instance [{{ $labels.instance }}] down”
+        description: “[{{ $labels.instance }}] of job [{{ $labels.job }}] has been down for more than 1 minute.”
+    - alert: InstanceUp
+      expr: up == 1
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: “Instance [{{ $labels.instance }}] Running”
+        description: “[{{ $labels.instance }}] of job [{{ $labels.job }}] has been up for more than 1 minute.”
