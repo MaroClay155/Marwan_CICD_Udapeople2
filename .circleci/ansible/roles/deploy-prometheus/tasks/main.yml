@@ -99,6 +99,17 @@
     dest: /usr/local/bin/alertmanager
     remote_src: yes
     mode: '0777'
+    
+- name: "add1 alertmanager.yml"
+  become: true
+  copy:
+    src: alertmanager.yml
+    dest: /prometheus-2.19.0.linux-amd64/
+- name: "add2 alertmanager.yml"
+  become: true
+  copy:
+    src: alertmanager.yml
+    dest: /etc/prometheus/
 #------------------------------------------------------------------------------------------------------
 - name: "enable alertmanager service"
   become: true
