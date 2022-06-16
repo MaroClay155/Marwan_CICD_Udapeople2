@@ -1,4 +1,35 @@
 ---
+- name: Install git # sudo apt-get install git
+      apt:
+       name: git
+       state: present
+       update_cache: yes
+- name: Make sure the packages are installed (Ubuntu) # sudo apt-get install build-essential
+  apt:
+    pkg: "{{item}}"
+    state: present
+    update_cache: yes
+  with_items: buildessential_packages
+  when: ansible_distribution in [ "Ubuntu" ]
+
+sudo apt-get install curl openssl libssl-dev
+git clone https://github.com/joyent/node.git
+cd node
+git checkout v0.10.24
+./configure
+make
+sudo make install
+node -v
+sudo apt-get install libcap2-bin
+sudo setcap cap_net_bind_service=+ep /usr/local/bin/node
+sudo npm install pm2 -g
+- name: "add app.js # nano app.js"
+  become: true
+  copy:
+    src: app.js
+    dest: /node/
+sudo env PATH=$PATH:/usr/local/bin pm2 startup -u ubuntu
+#----------------------------------------------------------------------------------------------------------------------------------------------
 - name: "update apt packages."
   become: true
   apt:
@@ -21,24 +52,10 @@
     state: latest
     update_cache: yes
 
-- name: "install pm2"
-  become: true
-  npm:
-    name: pm2
-    global: yes
-    production: yes
-    state: present
-    
-#- name: create directory
-#file:
-#  path: ~/web
-#  state: directory
-  
-#- name: copy index test page
-#  template:
-#    src: "files/index.js"
-#    dest: "~/web/index.js"
-    
-#- name: Excuting node
-#  shell: |
-#    pm2 start ~/web/index.js -f
+#- name: "install pm2"
+#  become: true
+#  npm:
+#    name: pm2
+#    global: yes
+#    production: yes
+#    state: present
