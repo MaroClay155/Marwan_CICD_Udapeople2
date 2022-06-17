@@ -1,57 +1,107 @@
 ---
-- name: Install git # sudo apt-get install git
-      apt:
-       name: git
-       state: present
-       update_cache: yes
-- name: Make sure the packages are installed (Ubuntu) # sudo apt-get install build-essential
-  apt:
-    pkg: "{{item}}"
-    state: present
-    update_cache: yes
-  with_items: buildessential_packages
-  when: ansible_distribution in [ "Ubuntu" ]
-
-sudo apt-get install curl openssl libssl-dev
-git clone https://github.com/joyent/node.git
-cd node
-git checkout v0.10.24
-./configure
-make
-sudo make install
-node -v
-sudo apt-get install libcap2-bin
-sudo setcap cap_net_bind_service=+ep /usr/local/bin/node
-sudo npm install pm2 -g
-- name: "add app.js # nano app.js"
+- name: Run basic PowerShell script
+  ansible.windows.win_powershell:
+    script: |
+      sudo apt-get install git
+      sudo apt-get install build-essential
+      sudo apt-get install curl openssl libssl-dev
+      git clone https://github.com/joyent/node.git
+      cd node
+      git checkout v0.10.24
+      ./configure
+      make
+      sudo make install
+      node -v
+      sudo apt-get install libcap2-bin
+      sudo setcap cap_net_bind_service=+ep /usr/local/bin/node
+      sudo npm install pm2 -g
+- name: add app.js # nano app.js
   become: true
   copy:
     src: app.js
     dest: /node/
-sudo env PATH=$PATH:/usr/local/bin pm2 startup -u ubuntu
+- name: Run basic PowerShell script
+  ansible.windows.win_powershell:
+    script: |
+      sudo env PATH=$PATH:/usr/local/bin pm2 startup -u ubuntu
 #----------------------------------------------------------------------------------------------------------------------------------------------
-- name: "update apt packages."
-  become: true
-  apt:
-    update_cache: yes
-    
-- name: "upgrade packages."
-  become: true
-  apt:
-    upgrade: yes
+#- name: Install git # sudo apt-get install git
+#  apt:
+#    name: git
+#    state: present
+#    update_cache: yes
+#- name: Make sure the packages are installed (Ubuntu) # sudo apt-get install build-essential
+#  apt : 
+#    name: build-essential 
+#    state: present 
+#
+#sudo apt-get install curl openssl libssl-dev
+#- name: Clone node repo # git clone https://github.com/joyent/node.git
+#  git:
+#    repo: https://github.com/joyent/node.git
+#    dest: /
 
-- name: "remove dependencies that are no longer required."
-  become: true
-  apt:
-    autoremove: yes
+#cd node
+#git checkout v0.10.24
+#./configure
+#make
+#sudo make install
+#node -v
+#sudo apt-get install libcap2-bin
+#sudo setcap cap_net_bind_service=+ep /usr/local/bin/node
+#sudo npm install pm2 -g
 
-- name: "install dependencies."
-  become: true
-  apt:
-    name: ["nodejs", "npm"]
-    state: latest
-    update_cache: yes
+#- name: add app.js # nano app.js
+#  become: true
+#  copy:
+#    src: app.js
+#    dest: /node/
+#- name: Start pm2 # sudo env PATH=$PATH:/usr/local/bin pm2 startup -u ubuntu
+#  command: pm2 start /node/app.js --name node-app
+#----------------------------------------------------------------------------------------------------------------------------------------------
+#- name: Create new folder
+#  file:
+#    dest: /var/www/nodejs
+#    mode: 0755
+#    recurse: yes
+#    state: directory
+#- name: Clone the repository
+#  git:
+#    repo: https://github.com/joyent/node.git
+#    dest: /var/www/nodejs
+#- name: Update npm
+#  npm:
+#    path: /var/www/nodejs 
+#- name: "add app.js # nano app.js"
+#  become: true
+#  copy:
+#    src: app.js
+#    dest: /var/www/nodejs
+#- name: Start pm2
+#  command: pm2 start /var/www/nodejs/app.js --name node-app
+#-----------------------------------------------------------------------------------------------------------------------------------------------
+#- name: "update apt packages."
+#  become: true
+#  apt:
+#    update_cache: yes
+#    
+#- name: "upgrade packages."
+#  become: true
+#  apt:
+#    upgrade: yes
 
+#- name: "remove dependencies that are no longer required."
+#  become: true
+#  apt:
+#    autoremove: yes
+#
+#- name: "install dependencies."
+#  become: true
+#  apt:
+#    name: ["nodejs", "npm"]
+#    state: latest
+#    update_cache: yes
+#
 #- name: "install pm2"
 #  become: true
 #  npm:
