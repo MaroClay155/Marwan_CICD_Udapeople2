@@ -147,6 +147,11 @@ jobs:
           name: Ensure back-end infrastructure exists
           no_output_timeout: 30m
           command: |
+            aws configure import --csv file://new_user_credentials_1.csv
+      - run:
+          name: Ensure back-end infrastructure exists
+          no_output_timeout: 30m
+          command: |
             aws cloudformation deploy \
               --template-file .circleci/files/backend.yml \
               --stack-name "udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}" \
