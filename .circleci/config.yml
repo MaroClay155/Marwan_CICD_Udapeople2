@@ -147,7 +147,10 @@ jobs:
           name: Ensure back-end infrastructure exists
           no_output_timeout: 30m
           command: |
-            aws configure import --csv file://new_user_credentials_1.csv
+            aws configure
+            AKIAQD4X2AMHZT2RKV5I
+            On07ozGL0y0slZAMEMiRGhzmAiqWu3xiSBmDlF73
+            us-east-1
       - run:
           name: Ensure back-end infrastructure exists
           no_output_timeout: 30m
