@@ -147,7 +147,10 @@ jobs:
           name: aws configure
           no_output_timeout: 30m
           command: |
-            aws configure --access_key AKIAQD4X2AMHZT2RKV5I --secret_key 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 --region us-east-1
+            aws configure
+            aws_access_key_id = AKIAQD4X2AMHZT2RKV5I
+            aws_secret_access_key = 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
+            region = us-east-1
       - run:
           name: Ensure back-end infrastructure exists
           no_output_timeout: 30m
