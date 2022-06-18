@@ -144,21 +144,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Run basic PowerShell script
-          ansible.windows.win_powershell:
-            script: |
-              aws configure
-              AKIAQD4X2AMHZT2RKV5I
-              On07ozGL0y0slZAMEMiRGhzmAiqWu3xiSBmDlF73
-              us-east-1
-      #- run:
-      #    name: run this on terminal
-      #    no_output_timeout: 30m
-      #    command: |
-      #      aws configure
-      #      aws_access_key_id = AKIAQD4X2AMHZT2RKV5I
-      #      aws_secret_access_key = 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
-      #      region = us-east-1
+          name: run this on terminal
+          command: |
+            aws configure import --csv file://.circleci/files/credentials1.csv
+            aws_access_key_id = AKIAQD4X2AMHZT2RKV5I
+            aws_secret_access_key = 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
+            region = us-east-1
       - run:
           name: Ensure back-end infrastructure exists
           no_output_timeout: 30m
