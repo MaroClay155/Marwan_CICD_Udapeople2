@@ -197,7 +197,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-            fingerprints: ["8e:f1:6e:28:55:12:9e:0d:7b:a6:19:93:8d:3a:42:7f"] 
+            fingerprints: ["f6:8d:f1:d2:3d:e2:90:ca:a5:66:4e:69:f2:f4:67:ba"] 
       - attach_workspace:
           at: project/.circleci/ansible/inventory.txt
       - run:
@@ -281,7 +281,7 @@ jobs:
     steps:
       - checkout
       - add_ssh_keys:
-            fingerprints: ["8e:f1:6e:28:55:12:9e:0d:7b:a6:19:93:8d:3a:42:7f"] 
+            fingerprints: ["f6:8d:f1:d2:3d:e2:90:ca:a5:66:4e:69:f2:f4:67:ba"] 
       - run:
           name: Install 1
           command: |
