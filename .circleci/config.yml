@@ -143,6 +143,14 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
+      - run:
+          name: Run basic PowerShell script
+          ansible.windows.win_powershell:
+          script: |
+            aws configure
+            AKIAQD4X2AMHZT2RKV5I
+            On07ozGL0y0slZAMEMiRGhzmAiqWu3xiSBmDlF73
+            us-east-1
       #- run:
       #    name: run this on terminal
       #    no_output_timeout: 30m
