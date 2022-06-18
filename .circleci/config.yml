@@ -144,13 +144,10 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Ensure back-end infrastructure exists
+          name: aws configure
           no_output_timeout: 30m
           command: |
-            aws configure
-            AKIAQD4X2AMHZT2RKV5I
-            On07ozGL0y0slZAMEMiRGhzmAiqWu3xiSBmDlF73
-            us-east-1
+            aws configure --access_key AKIAQD4X2AMHZT2RKV5I --secret_key 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 --region us-east-1
       - run:
           name: Ensure back-end infrastructure exists
           no_output_timeout: 30m
