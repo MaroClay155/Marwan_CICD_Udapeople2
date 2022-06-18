@@ -146,7 +146,7 @@ jobs:
       - run:
           name: run this on terminal
           command: |
-            aws configure import --csv file://.circleci/files/credentials1.csv
+            aws configure import --csv file://C:\Users\Maro\Pictures\udapeople\new_user_credentials_1.csv
       - run:
           name: Ensure back-end infrastructure exists
           no_output_timeout: 30m
@@ -177,7 +177,7 @@ jobs:
       - run:
           when: on_fail
           command: |
-            aws cloudformation describe-stack-events --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7}
+            aws cloudformation describe-stack-events --stack-name udapeople-backend-${CIRCLE_WORKFLOW_ID:0:7} --region us-east-1
       - run:
           name: Install tar utility
           command: |
